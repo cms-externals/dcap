@@ -40,9 +40,17 @@ int get_ack(int , ConfirmationBlock * );
 
 
 #ifndef HAVE_NTOHLL
-uint64_t ntohll(uint64_t x);
+#ifdef __APPLE__ 
+  uint64_t _htonll(uint64_t arg);
+  #else
+  uint64_t ntohll(uint64_t x);
+  #endif /* __APPLE__ */
 #endif /* HAVE_NTOHLL */
 
 #ifndef HAVE_HTONLL
-uint64_t htonll(uint64_t arg);
+  #ifdef __APPLE__
+  uint64_t _htonll(uint64_t arg);
+  #else
+  uint64_t htonll(uint64_t arg);
+  #endif /* __APPLE__ */
 #endif /* HAVE_HTONLL */
