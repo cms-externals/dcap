@@ -126,16 +126,13 @@ static ConfirmationBlock get_reply(int);
 static int name_invalid(char *);
 
 #ifndef HAVE_HTONLL
-  #ifdef __APPLE__
-    uint64_t _htonll(uint64_t);
-  #else
+  #if !defined(ntohll)
     uint64_t  htonll(uint64_t);
   #endif
 #endif
+
 #ifndef HAVE_NTOHLL
-  #ifdef __APPLE__
-    uint64_t  _ntohll(uint64_t);
-  #else
+  #if !defined(ntohll)
     uint64_t  ntohll(uint64_t);
   #endif
 #endif
